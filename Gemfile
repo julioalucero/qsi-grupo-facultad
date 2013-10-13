@@ -13,6 +13,7 @@ gem 'figaro'
 gem 'pg'
 gem 'slim'
 gem 'unicorn'
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]
@@ -28,11 +29,17 @@ group :development do
   gem 'rb-fsevent', :require=>false
   gem 'rb-inotify', :require=>false
 end
+
 group :development, :test do
   gem 'factory_girl_rails'
 end
+
 group :test do
   gem 'capybara'
   gem 'minitest-spec-rails'
   gem 'minitest-wscolor'
+end
+
+group :production do
+  gem 'rails_12factor'
 end
