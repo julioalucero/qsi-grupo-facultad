@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-QsiGrupoFacultad::Application.config.secret_key_base = '01d122c2a76de8ae3ddcf35d285dbe147d6e72fa382bac0b922d46ae2546f2024d89d83a9bff24d5eef188d8414bd75240ecf282825e0fa4a18a88d757518dff'
+QsiGrupoFacultad::Application.config.secret_key_base = 'bf3650ed466d5cc316ad53ccb8a192518926d30b94564242896e67d706b955044cfc65652b04bfc33bf6cde578d51a9fa3fef660445177e6e9e60aa2d83b1dda'
