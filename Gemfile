@@ -35,6 +35,8 @@ end
 
 group :development, :test do
   gem 'factory_girl_rails'
+  gem 'pry'
+  gem 'awesome_print'
 end
 
 group :test do
