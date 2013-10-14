@@ -25,7 +25,7 @@ class UserTest < ActiveSupport::TestCase
       User.find_for_facebook_oauth(OmniAuth.config.mock_auth[:facebook])
       user = User.last
 
-      assert_equal User.count,              1
+      assert_equal User.count, 1
     end
   end
 
