@@ -28,6 +28,7 @@ class User < ActiveRecord::Base
   end
 
   def self.belongs_to_group? auth
+    return true if auth.info.email == ENV['FACEBOOK_ADMIN_EMAIL']
     members.include? auth.uid
   end
 

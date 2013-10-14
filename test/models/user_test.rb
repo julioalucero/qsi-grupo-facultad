@@ -19,6 +19,15 @@ class UserTest < ActiveSupport::TestCase
   })
 
 
+  describe 'When there is no user' do
+    test "Create the facebook admin user" do
+      ENV['FACEBOOK_ADMIN_EMAIL'] = 'user@example.com'
+      User.find_for_facebook_oauth(OmniAuth.config.mock_auth[:facebook])
+      user = User.last
+
+      assert_equal User.count,              1
+    end
+  end
 
   describe 'When a user belongs to the group' do
     test "Create the user" do
