@@ -8,6 +8,9 @@ class UserTest < ActiveSupport::TestCase
     :info => {
       :email => 'user@example.com'
     },
+    :credentials => {
+      :token => 'sjklsdfjsaf9sdfj3i29232j2j32',
+    },
     :extra => {
       :raw_info => {
         :name => "Michael Scott",
@@ -21,8 +24,14 @@ class UserTest < ActiveSupport::TestCase
     test "Create the user" do
       User.stub(:members, ["32323232", "1569878714"]) do
         User.find_for_facebook_oauth(OmniAuth.config.mock_auth[:facebook])
+        user = User.last
 
-        assert_equal User.count, 1
+        assert_equal User.count,              1
+        assert_equal user.email,              'user@example.com'
+        assert_equal user.name,               'Michael Scott'
+        assert_equal user.uid,                '32323232'
+        assert_equal user.provider,           'facebook'
+        assert_equal user.oauth_access_token, 'sjklsdfjsaf9sdfj3i29232j2j32'
       end
     end
   end

@@ -237,7 +237,7 @@ Devise.setup do |config|
   config.omniauth :facebook,
     ENV['FACEBOOK_APP_ID'],
     ENV['FACEBOOK_APP_SECRET'],
-    :scope => 'email',
+    :scope => 'email, user_groups',
     :display => 'popup'
 
   # ==> Warden configuration
