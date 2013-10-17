@@ -18,7 +18,6 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 
 gem "koala", "~> 1.7.0rc1"
-
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]
@@ -33,6 +32,7 @@ group :development do
   gem 'rb-fchange', :require=>false
   gem 'rb-fsevent', :require=>false
   gem 'rb-inotify', :require=>false
+  gem 'rails_best_practices'
 end
 
 group :development, :test do
