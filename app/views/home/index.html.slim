@@ -1,3 +1,10 @@
+h3 Feeds
+ul.Feeds
+  - @feeds.each do |feed|
+    li
+      = feed.message
+
+
 h3 Home
 - @users.each do |user|
   p
