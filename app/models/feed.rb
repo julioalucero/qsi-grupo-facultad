@@ -10,7 +10,7 @@ class Feed < ActiveRecord::Base
     feeds.each do |f|
       Feed.create(
         message:      f['message'],
-        network_id:   f['network_id'],
+        network_id:   f['id'],
         updated_time: f['updated_time'],
         created_time: f['created_time'],
         user:         User.find_by_uid(f['from']['id'])
