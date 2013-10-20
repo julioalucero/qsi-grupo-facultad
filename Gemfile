@@ -16,8 +16,10 @@ gem 'unicorn'
 
 gem 'omniauth'
 gem 'omniauth-facebook'
-
 gem "koala", "~> 1.7.0rc1"
+
+gem 'kaminari'
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]

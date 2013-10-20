@@ -4,6 +4,6 @@ class HomeController < ApplicationController
 
   def index
     @users = User.all
-    @feeds = Feed.all
+    @feeds = Feed.page params[:page]
   end
 end
