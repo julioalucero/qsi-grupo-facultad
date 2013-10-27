@@ -1,17 +1,17 @@
 feed_1:
-  network_id   : 156966857675985_614572588582074
+  id           : '156966857675985_614572588582074'
   message      : alguien me podria mandar por favor las
   created_time : "2013-10-16T021207+0000"
   updated_time : "2013-10-16T021207+0000"
   from :
     name : user example
-    id   : 1476902024
+    id   : '32093203920'
 
 feed_2:
-  network_id   : 232966857675985_614572588582345
+  id           : '232966857675985_614572588582345'
   message      : cada cuerda porque tengo algunos.
   created_time : "2012-09-16T021107+0000"
   updated_time : "2013-10-16T021107+0000"
   from :
     name : another user example
-    id   : 1126902032
+    id   : '32093203920'
