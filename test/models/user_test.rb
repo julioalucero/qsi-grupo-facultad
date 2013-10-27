@@ -46,8 +46,9 @@ class UserTest < ActiveSupport::TestCase
   end
 
   describe 'When a user does not belongs to the group' do
-    test "Create the user" do
+    test "not create the user" do
       User.stub(:members, ["666232233", "1569878714"]) do
+        ENV['FACEBOOK_ADMIN_EMAIL'] = 'nobody@example.com'
         User.find_for_facebook_oauth(OmniAuth.config.mock_auth[:facebook])
 
         assert_equal User.count, 0

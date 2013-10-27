@@ -16,33 +16,14 @@ class FeedTest < ActiveSupport::TestCase
         user = FactoryGirl.create(:user)
         ENV['FACEBOOK_ADMIN_EMAIL'] = 'user@example.com'
 
-        @feed_1 = {
-          'id'           => '156966857675985_614572588582074',
-          'message'      => '[fisica 2]alguien me podria mandar por favor las mediciones del tp 4 de ondas que se hicieron para cada cuerda, porque tengo algunos datos incompletos. gracias :D',
-          'created_time' => "2013-10-16T02:12:07+0000",
-          'updated_time' => "2013-10-16T02:12:07+0000",
-          'from' => {
-            'name' => 'user example',
-            'id'   => user.uid
-          }
-        }
+        facebook_feeds = YAML.load_file('test/factories/facebook_feeds.yml')
+        @feed_1 = facebook_feeds['feed_1']
+        @feed_2 = facebook_feeds['feed_2']
+        @feeds  = [@feed_1, @feed_2]
 
-        @feed_2 = {
-          'id'           => '232966857675985_614572588582345',
-          'message'      => '[Sistemas]  cada cuerda, porque tengo algunos.',
-          'created_time' => "2012-09-16T02:11:07+0000",
-          'updated_time' => "2013-10-16T02:11:07+0000",
-          'from' => {
-            'name' => 'another user example',
-            'id'   => '1126902032'
-          }
-        }
+        FetchFacebookGroupFeed.stub(:fetch, @feeds) do
 
-        @feeds = [@feed_1, @feed_2]
-
-        FetchFacebookGroupFeed.stub(:fetch_feeds, @feeds) do
-
-          Feed.import_fetch_feeds
+          Feed.fetch_feeds
 
           assert_equal Feed.count, 2
 
