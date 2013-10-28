@@ -9,5 +9,7 @@ class CreateFeeds < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :feeds, :user_id
   end
 end
