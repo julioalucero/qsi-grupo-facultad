@@ -19,6 +19,7 @@ gem 'omniauth-facebook'
 gem "koala", "~> 1.7.0rc1"
 
 gem 'kaminari'
+gem 'ransack'
 
 group :development do
   gem 'better_errors'

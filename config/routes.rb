@@ -1,5 +1,6 @@
 QsiGrupoFacultad::Application.routes.draw do
-  root :to => "home#index"
+  get "feeds/index"
+  root :to => "feeds#index"
 
   devise_for :users, :controllers => {
     :registrations      => "registrations",
@@ -7,4 +8,6 @@ QsiGrupoFacultad::Application.routes.draw do
   }
 
   resources :users
+
+  resources :feeds
 end
