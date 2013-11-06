@@ -2,14 +2,13 @@ h3 Feeds
 
 h4 Search
 
-= search_form_for @q do |f|
-  = f.label :message_cont, 'Meesage contain'
-  = f.text_field :message_cont
-  = f.submit
+= search_form_for @q, class: 'form-search' do |f|
+  = f.text_field :message_cont, placeholder: 'Busca por asunto...', class: 'input-medium search-query'
+  = f.submit 'Buscar', class: 'btn btn-primary'
 
-ul.Feeds
+.row-fluid
   - @feeds.each do |feed|
-    li
+    .span12
       = feed.message
 
 = paginate @feeds
