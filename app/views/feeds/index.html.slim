@@ -1,15 +1,15 @@
-h3 Feeds
-
-h4 Search
-
 = search_form_for @q, class: 'form-search' do |f|
   = f.text_field :message_cont, placeholder: 'Busca por asunto...', class: 'input-medium search-query'
   = f.submit 'Buscar', class: 'btn btn-primary'
 
 .row-fluid
-  - @feeds.each do |feed|
-    .span12
-      = feed.message
+  .span12
+    ul
+      - @feeds.each do |feed|
+        li
+          h5
+            = feed.name unless feed.user.nil?
+          = feed.message
 
 = paginate @feeds
 

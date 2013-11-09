@@ -3,6 +3,8 @@ class Feed < ActiveRecord::Base
 
   validates :network_id, presence: true, uniqueness: true
 
+  delegate :name, :to => :user
+
   include FetchFacebookGroupFeed
 
   def self.fetch_feeds
