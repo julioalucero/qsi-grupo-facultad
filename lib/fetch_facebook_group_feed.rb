@@ -2,16 +2,18 @@ module FetchFacebookGroupFeed
 
   extend self
 
-  def fetch updated_time = nil
-    current_feeds = first_feed(updated_time)
+  class << self
+    attr_accessor :field, :limit, :access_token, :fb_until, :__paging_token
+  end
 
-    # NOTE refactor it, crate one method for the first time
-    # and other for the updates
-    feeds = []
-    if updated_time.nil?
-      feeds = paginate_feeds(current_feeds)
-    else
-      feeds = current_feeds
+  # NOTE document this method
+  def fetch updated_time = nil
+    current_feeds = fetch_facebook_feeds
+
+    feeds = current_feeds
+
+    unless feeds.empty?
+      FetchFacebookGroupFeed.field, FetchFacebookGroupFeed.limit, FetchFacebookGroupFeed.access_token, FetchFacebookGroupFeed.fb_until, FetchFacebookGroupFeed.__paging_token = feeds.next_page_params[1].values
     end
 
     feeds.flatten
@@ -19,15 +21,30 @@ module FetchFacebookGroupFeed
 
   private
 
-  def paginate_feeds current_feed
-    feeds = []
-
-    while !current_feed.nil? and !current_feed.empty?
-      feeds << current_feed
-      current_feed = current_feed.next_page
+  def fetch_facebook_feeds
+    if first_feed?
+      graph.get_connections ENV['FACEBOOK_GROUP'], 'feed', batch_params
+    else
+      graph.get_connections ENV['FACEBOOK_GROUP'], 'feed', module_params
     end
+  end
 
-    feeds
+  # TODO last_update_time is not necesary
+  def batch_params
+    {
+      :fields => 'id,message,created_time,updated_time,from',
+      :limit  => 100
+    }
+  end
+
+  def module_params
+    {
+      :fields         => field,
+      :limit          => limit,
+      :access_token   => access_token,
+      :until          => fb_until,
+      :__paging_token => __paging_token
+    }
   end
 
   def admin_user
@@ -38,19 +55,11 @@ module FetchFacebookGroupFeed
     Koala::Facebook::API.new(admin_user.oauth_access_token)
   end
 
-  def first_feed updated_time
-    graph.get_connections ENV['FACEBOOK_GROUP'], 'feed', batch_params(updated_time)
-  end
-
-  def batch_params updated_time
-    {
-      :fields => 'id,message,created_time,updated_time,from',
-      :limit  => 2,
-      :since  => last_update_time(updated_time)
-    }
-  end
-
   def last_update_time updated_time
     Time.parse(updated_time.to_s).to_i unless updated_time.nil?
+  end
+
+  def first_feed?
+    field.nil?
   end
 end
