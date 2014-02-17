@@ -11,5 +11,15 @@
             = feed.name unless feed.user.nil?
           = feed.message
 
+          br
+          br
+          p Tag List:
+          = feed.tag_list
+
+          br
+          = form_for feed, :url =>  { :action => 'add_feed_tags', :id => feed.id }, :method => :post, :remote => true do |f|
+            = f.text_field :tag_list
+            = f.submit "Add to Cart"
+
 = paginate @feeds
 

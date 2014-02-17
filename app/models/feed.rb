@@ -7,6 +7,10 @@ class Feed < ActiveRecord::Base
 
   include FetchFacebookGroupFeed
 
+  acts_as_taggable
+
+  default_scope order('created_time DESC')
+
   def self.fetch_feeds
     feeds = FetchFacebookGroupFeed.fetch(last_update_time)
 

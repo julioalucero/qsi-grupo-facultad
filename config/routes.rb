@@ -10,4 +10,6 @@ QsiGrupoFacultad::Application.routes.draw do
   resources :users
 
   resources :feeds
+
+  post 'add_feed_tags', to: 'feeds#add_feed_tags', as: 'add_feed_tags'
 end
