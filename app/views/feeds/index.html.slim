@@ -11,11 +11,7 @@
             = feed.name unless feed.user.nil?
           = feed.message
 
-          br
-          br
-          = form_for feed, :url =>  { :action => 'add_feed_tags', :id => feed.id }, :method => :post, :remote => true do |f|
-            input data-role="tagsinput" id="feed_tag_list" name="feed[tag_list]" type="text" value="#{feed.tag_list}"
-            = f.submit "Add to Cart"
+          = render partial: 'tag_form', locals: { feed: feed }
 
 = paginate @feeds
 
