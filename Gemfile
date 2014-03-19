@@ -22,6 +22,7 @@ gem 'kaminari'
 gem 'ransack'
 
 gem 'acts-as-taggable-on'
+gem 'coveralls', require: false
 
 group :development do
   gem 'better_errors'
