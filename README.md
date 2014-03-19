@@ -1,5 +1,3 @@
-h1. Qsi Grupo Facul tad
-
 Qsi Grupo Facultad
 ========================
 
