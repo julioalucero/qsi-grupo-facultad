@@ -37,7 +37,7 @@ GEM
       erubis (>= 2.6.6)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    bootstrap-sass (2.3.2.2)
+    bootstrap-sass (3.1.1.0)
       sass (~> 3.2)
     builder (3.1.4)
     capybara (2.2.1)
@@ -122,7 +122,7 @@ GEM
       ruby_parser (~> 3.1.1)
     hub (1.12.0)
     i18n (0.6.9)
-    jbuilder (1.5.3)
+    jbuilder (2.0.4)
       activesupport (>= 3.0.0)
       multi_json (>= 1.2.0)
     jquery-rails (3.1.0)
@@ -135,7 +135,7 @@ GEM
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
     kgio (2.9.2)
-    koala (1.7.0rc1)
+    koala (1.9.0)
       addressable
       faraday
       multi_json
@@ -157,7 +157,7 @@ GEM
       rails (>= 3.0, < 4.1)
     minitest-wscolor (0.0.3)
       minitest (>= 2.3.1)
-    multi_json (1.9.0)
+    multi_json (1.9.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
     nio4r (1.0.0)
@@ -298,7 +298,7 @@ DEPENDENCIES
   awesome_print
   better_errors
   binding_of_caller
-  bootstrap-sass (~> 2.3.2.2)
+  bootstrap-sass (~> 3.1.1.0)
   capybara
   coffee-rails (~> 4.0.0)
   coveralls
@@ -311,10 +311,10 @@ DEPENDENCIES
   haml2slim
   html2haml
   hub
-  jbuilder (~> 1.2)
+  jbuilder (~> 2.0.4)
   jquery-rails
   kaminari
-  koala (~> 1.7.0rc1)
+  koala (~> 1.9.0)
   minitest-spec-rails
   minitest-wscolor
   omniauth

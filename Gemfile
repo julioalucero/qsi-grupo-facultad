@@ -6,8 +6,8 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'turbolinks'
-gem 'jbuilder', '~> 1.2'
-gem 'bootstrap-sass', '~> 2.3.2.2'
+gem 'jbuilder', '~> 2.0.4'
+gem 'bootstrap-sass', '~> 3.1.1.0'
 gem 'devise'
 gem 'figaro'
 gem 'pg'
@@ -16,7 +16,7 @@ gem 'unicorn'
 
 gem 'omniauth'
 gem 'omniauth-facebook'
-gem "koala", "~> 1.7.0rc1"
+gem "koala", "~> 1.9.0"
 
 gem 'kaminari'
 gem 'ransack'
