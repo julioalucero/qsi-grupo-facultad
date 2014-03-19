@@ -1,6 +1,6 @@
 language: ruby
 rvm:
-  - 2.0.0
+  - 2.1.0
 
 #script:
 #  - bundle exec rake test
@@ -10,7 +10,8 @@ env:
     - RAILS_ENV=test
 
 script:
-  - RAILS_ENV=test bundle exec rake --trace db:migrate test
+  - RAILS_ENV=test bundle exec rake --trace db:migrate
+  - RAILS_ENV=test bundle exec rake --trace test
 before_script:
   - mysql -e 'create database qsi_grupo_facultad'
   - psql -c 'create database qsi_grupo_facultad;' -U postgres
