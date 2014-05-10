@@ -21,7 +21,7 @@ gem "koala", "~> 1.9.0"
 gem 'kaminari'
 gem 'ransack'
 
-gem 'acts-as-taggable-on'
+gem 'acts-as-taggable-on', '~> 3.1.0'
 gem 'coveralls', require: false
 
 group :development do
