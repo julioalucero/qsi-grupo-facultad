@@ -22,8 +22,10 @@ class User < ActiveRecord::Base
                 uid:                auth.uid,
                 email:              auth.info.email,
                 password:           Devise.friendly_token[0,20],
-                oauth_access_token: auth.credentials.token
-
+                oauth_access_token: auth.credentials.token,
+                nickname:           auth.info.nickname,
+                image:              auth.info.image,
+                url:                auth.info.urls['Facebook']
                )
   end
 
