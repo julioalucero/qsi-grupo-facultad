@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 
   devise :omniauthable, :omniauth_providers => [:facebook]
 
-  def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
+  def self.find_or_create_by_facebook_oauth(auth, signed_in_resource=nil)
     user = User.where(:provider => auth.provider, :uid => auth.uid).first
 
     if user.nil? and belongs_to_group?(auth)
