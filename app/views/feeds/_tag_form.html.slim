@@ -1,5 +1,7 @@
 br
+= raw feed.tag_list.map { |t| link_to t, feeds_path(tag: t)}.join(', ')
 br
 = form_for feed, :url =>  { :action => 'add_feed_tags', :id => feed.id }, :method => :post, :remote => true do |f|
   input data-role="tagsinput" id="feed_tag_list" name="feed[tag_list]" type="text" value="#{feed.tag_list}"
-  = f.submit "Update Tags", class: 'btn btn-sm'
+  = f.submit "Update Tags", class: 'btn btn-primary btn-mini'
+

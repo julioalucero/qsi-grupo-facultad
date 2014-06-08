@@ -4,7 +4,12 @@ class FeedsController < ApplicationController
 
   def index
     @q = Feed.search(params[:q])
-    @feeds = @q.result.page(params[:page])
+
+    if params[:tag]
+      @feeds = Feed.tagged_with(params[:tag]).page(params[:page])
+    else
+      @feeds = @q.result.page(params[:page])
+    end
   end
 
   def add_feed_tags
