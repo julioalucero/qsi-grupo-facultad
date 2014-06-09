@@ -42,7 +42,7 @@ class User < ActiveRecord::Base
                 email:              auth.info.email,
                 password:           Devise.friendly_token[0,20],
                 oauth_access_token: auth.credentials.token,
-                nickname:           auth.info.nickname,
+                nickname:           auth.info.nickname || '',
                 image:              auth.info.image,
                 url:                auth.info.urls['Facebook']
                )
