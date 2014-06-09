@@ -53,7 +53,7 @@ class User < ActiveRecord::Base
                 provider: 'facebook',
                 uid:      member['id'],
                 image:    "http://graph.facebook.com/#{member['id']}/picture",
-                url:      member['picture']['data']['url'],
+                url:      "http://www.facebook.com/#{member['id']}",
                 email:    "#{rand(100000)}@noemail.com",
                 password: "password_no_empty"
                )
