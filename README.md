@@ -21,3 +21,12 @@ Hasta el momento la administración incluye:
 | Dependencies            |  [![Dependency Status](https://gemnasium.com/julioalucero/qsi-grupo-facultad.png)](https://gemnasium.com/julioalucero/qsi-grupo-facultad)
 | Issues                  | [Issues](https://github.com/julioalucero/qsi-grupo-facultad/issues) |
 
+## Setup
+
+```
+gem install bundler
+bundle install
+rake db:setup
+rake facebook_group_users::load_all
+rake feeds::load_all
+```

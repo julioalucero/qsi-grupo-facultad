@@ -16,7 +16,26 @@ class User < ActiveRecord::Base
     user
   end
 
-  def self.create_user auth
+  def self.batch_params
+    { :fields => 'id, name, email, link, picture' }
+  end
+
+  def self.create_batch_facebook_group_users(members)
+    puts "Creating Users"
+    puts "Users before script: #{User.count}"
+    puts "Creating:"
+    members.each do |member|
+      user = User.find_or_initialize_by_uid(member['id'])
+      if user.new_record? and create_user_from_member(member)
+        puts "- #{member['name']}"
+      end
+    end
+    puts "Users after script #{User.count}"
+  end
+
+  private
+
+  def self.create_user(auth)
     User.create(name:               auth.extra.raw_info.name,
                 provider:           auth.provider,
                 uid:                auth.uid,
@@ -29,6 +48,17 @@ class User < ActiveRecord::Base
                )
   end
 
+  def self.create_user_from_member(member)
+    User.create(name:     member['name'],
+                provider: 'facebook',
+                uid:      member['id'],
+                image:    "http://graph.facebook.com/#{member['id']}/picture",
+                url:      member['picture']['data']['url'],
+                email:    "#{rand(100000)}@noemail.com",
+                password: "password_no_empty"
+               )
+  end
+
   def self.belongs_to_group? auth
     return true if auth.info.email == ENV['FACEBOOK_ADMIN_EMAIL']
     members.include? auth.uid
@@ -37,15 +67,7 @@ class User < ActiveRecord::Base
   def self.members
     admin_user = User.find_by_email ENV['FACEBOOK_ADMIN_EMAIL']
     graph = Koala::Facebook::API.new(admin_user.oauth_access_token)
-    members = graph.get_connections ENV['FACEBOOK_GROUP'], 'members', batch_params
+    members = graph.get_connections ENV['FACEBOOK_GROUP'], 'members', { fields: 'id' }
     members.collect {|m| m['id']}
   end
-
-  def self.batch_params
-    {
-      :fields => 'id'
-    }
-  end
-
-  private_class_method :create_user, :belongs_to_group?, :members, :batch_params
 end
