@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
 
   devise :omniauthable, :omniauth_providers => [:facebook]
 
+  DEFAULT_IMAGE = 'http://reface.me/wp-content/uploads/default-facebook-avatar-female.gif'
+
   def self.find_or_create_by_facebook_oauth(auth, signed_in_resource=nil)
     user = User.where(:provider => auth.provider, :uid => auth.uid).first
 
@@ -33,6 +35,10 @@ class User < ActiveRecord::Base
     puts "Users after script #{User.count}"
   end
 
+  def image
+   read_attribute(:image).presence || DEFAULT_IMAGE
+  end
+
   private
 
   def self.create_user(auth)
@@ -52,7 +58,7 @@ class User < ActiveRecord::Base
     User.create(name:     member['name'],
                 provider: 'facebook',
                 uid:      member['id'],
-                image:    "http://graph.facebook.com/#{member['id']}/picture",
+                image:    member['picture']['data']['url'],
                 url:      "http://www.facebook.com/#{member['id']}",
                 email:    "#{rand(100000)}@noemail.com",
                 password: "password_no_empty"
