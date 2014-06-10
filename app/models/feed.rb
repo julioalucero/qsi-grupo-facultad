@@ -2,6 +2,7 @@ class Feed < ActiveRecord::Base
   belongs_to :user
 
   validates :network_id, presence: true, uniqueness: true
+  validates :user, presence: true
 
   delegate :name, :image, :url, :to => :user
 
@@ -9,7 +10,7 @@ class Feed < ActiveRecord::Base
 
   acts_as_taggable
 
-  default_scope order('created_time DESC')
+  default_scope { order('created_time DESC') }
 
   def self.fetch_feeds
     feeds = FetchFacebookGroupFeed.fetch(last_update_time)
