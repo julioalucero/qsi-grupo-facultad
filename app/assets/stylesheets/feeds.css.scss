@@ -1,3 +1,28 @@
 // Place all the styles related to the Feeds controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+li.feed .row-fluid{
+  margin-bottom: 10px;
+}
+
+li.feed .feed-message {
+  margin-bottom: 20px;
+}
+
+.bootstrap-tagsinput {
+  margin-right: 10px;
+}
+
+.bootstrap-tagsinput input {
+  float: left;
+  margin: 3px 4px !important;
+}
+
+.bootstrap-tagsinput .tag {
+  float: left;
+  margin: 5px 2px;
+}
+
+.update-tags {
+  margin-bottom: 10px;
+}

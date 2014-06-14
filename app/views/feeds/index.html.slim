@@ -9,13 +9,14 @@
         li.feed
           .row-fluid
             .span1
-              = link_to image_tag(feed.image), feed.url
+              = link_to image_tag(feed.image), feed.url unless feed.image.nil?
             .span11
               h5
                 = link_to feed.name, feed.url unless feed.user.nil?
               = feed.created_time.strftime("%b %d a las %R hs.")
 
-          = feed.message
+          .feed-message
+            = feed.message
 
           = render partial: 'tag_form', locals: { feed: feed }
 
